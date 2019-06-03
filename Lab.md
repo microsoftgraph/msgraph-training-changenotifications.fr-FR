@@ -1,0 +1,23 @@
+# <a name="using-change-notifications-and-track-changes-with-microsoft-graph"></a><span data-ttu-id="3da1b-101">Utilisation des notifications de modification et suivi des modifications avec Microsoft Graph</span><span class="sxs-lookup"><span data-stu-id="3da1b-101">Using Change Notifications and Track Changes with Microsoft Graph</span></span>
+
+<span data-ttu-id="3da1b-102">Dans cet atelier, vous allez créer une application de console .NET principale qui reçoit les notifications de modification de Microsoft Graph lorsqu’une mise à jour est effectuée sur un compte d’utilisateur dans Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="3da1b-102">In this lab you will create a .NET Core console application that receives change notifications from the Microsoft Graph when an update is made to a users account in Azure Active Directory (Azure AD).</span></span> <span data-ttu-id="3da1b-103">L’application gère l’abonnement aux notifications de modification et utilise les modifications apportées au suivi dans Microsoft Graph pour s’assurer qu’aucune modification n’est manquée.</span><span class="sxs-lookup"><span data-stu-id="3da1b-103">The application will managed the Change Notification subscription and use Track Changes in the Microsoft Graph to ensure no changes are missed.</span></span>
+
+## <a name="in-this-lab"></a><span data-ttu-id="3da1b-104">Dans cet atelier</span><span class="sxs-lookup"><span data-stu-id="3da1b-104">In this lab</span></span>
+
+1. [<span data-ttu-id="3da1b-105">Introduction à l’atelier</span><span class="sxs-lookup"><span data-stu-id="3da1b-105">Introduction to the lab</span></span>](./tutorial/01_intro.md)
+1. [<span data-ttu-id="3da1b-106">Inscrire et accorder le consentement à l’application dans Microsoft Graph</span><span class="sxs-lookup"><span data-stu-id="3da1b-106">Register and grant consent to the application in Microsoft Graph</span></span>](./tutorial/02_create-app.md)
+1. [<span data-ttu-id="3da1b-107">Installer ngrok</span><span class="sxs-lookup"><span data-stu-id="3da1b-107">Install ngrok</span></span>](./tutorial/03_ngrok.md)
+1. [<span data-ttu-id="3da1b-108">Créer le projet .NET Core</span><span class="sxs-lookup"><span data-stu-id="3da1b-108">Create the .NET Core project</span></span>](./tutorial/04_create-project.md)
+1. [<span data-ttu-id="3da1b-109">Code de l’API HTTP</span><span class="sxs-lookup"><span data-stu-id="3da1b-109">Code the HTTP API</span></span>](./tutorial/05_add-code.md)
+1. [<span data-ttu-id="3da1b-110">Exécuter l’application</span><span class="sxs-lookup"><span data-stu-id="3da1b-110">Run the application</span></span>](./tutorial/06_run.md)
+1. [<span data-ttu-id="3da1b-111">Gérer les abonnements aux notifications</span><span class="sxs-lookup"><span data-stu-id="3da1b-111">Manage notification subscriptions</span></span>](./tutorial/07_subbscription-management.md)
+1. [<span data-ttu-id="3da1b-112">Requête de modifications</span><span class="sxs-lookup"><span data-stu-id="3da1b-112">Query for changes</span></span>](./tutorial/08_deltaquery.md)
+1. [<span data-ttu-id="3da1b-113">Atelier terminé</span><span class="sxs-lookup"><span data-stu-id="3da1b-113">Completed Lab</span></span>](./tutorial/09_completed.md)
+
+## <a name="prerequisites"></a><span data-ttu-id="3da1b-114">Conditions préalables</span><span class="sxs-lookup"><span data-stu-id="3da1b-114">Prerequisites</span></span>
+
+<span data-ttu-id="3da1b-115">Avant de commencer ce didacticiel, le kit de développement [logiciel (SDK) .net Core 2,2](https://dotnet.microsoft.com/download) et [Visual Studio code](https://code.visualstudio.com/) doivent être installés sur votre ordinateur de développement.</span><span class="sxs-lookup"><span data-stu-id="3da1b-115">Before you start this tutorial, you should have [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download) and [Visual Studio Code](https://code.visualstudio.com/) installed on your development machine.</span></span> <span data-ttu-id="3da1b-116">Si vous ne les avez pas installés, reportez-vous aux liens précédents sur les options de téléchargement.</span><span class="sxs-lookup"><span data-stu-id="3da1b-116">If you do not have them installed, visit the previous links for download options.</span></span>
+
+## <a name="completed-exercises"></a><span data-ttu-id="3da1b-117">Exercices terminés</span><span class="sxs-lookup"><span data-stu-id="3da1b-117">Completed Exercises</span></span>
+
+<span data-ttu-id="3da1b-118">Les solutions terminées sont fournies [](./Demos) dans le dossier Demos si vous êtes bloqué.</span><span class="sxs-lookup"><span data-stu-id="3da1b-118">Finished solutions are provided in the [Demos](./Demos) folder if you get stuck.</span></span>
