@@ -16,7 +16,7 @@ Dans cet atelier, vous allez créer une application de console .NET principale q
 
 ## <a name="prerequisites"></a>Conditions préalables
 
-Avant de commencer ce didacticiel, le kit de développement [logiciel (SDK) .net Core 2,2](https://dotnet.microsoft.com/download) et [Visual Studio code](https://code.visualstudio.com/) doivent être installés sur votre ordinateur de développement. Si vous ne les avez pas installés, reportez-vous aux liens précédents sur les options de téléchargement.
+Avant de commencer ce didacticiel, le kit de développement [logiciel (SDK) .net Core 2,2](https://dotnet.microsoft.com/download) et [Visual Studio code](https://code.visualstudio.com/) doivent être installés sur votre ordinateur de développement. 
 
 ## <a name="completed-exercises"></a>Exercices terminés
 

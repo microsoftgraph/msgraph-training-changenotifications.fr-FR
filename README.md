@@ -16,21 +16,23 @@ Dans cet atelier, vous allez créer une application de console .NET principale q
 
 ## <a name="watch-the-module"></a>Regarder le module
 
-Ce module a été enregistré et est disponible dans le canal YouTube de développement Office: [modifier les notifications et suivre les modifications avec Microsoft Graph](https://youtu.be/MvJ15BHTdHA)
+Ce module a été enregistré et est disponible dans le canal YouTube de développement Office: [modifier les notifications et suivre les modifications avec Microsoft Graph](https://youtu.be/fThiCZmIcMQ)
 
 ## <a name="contributors"></a>Collaborateurs
 
-| Rôles                | Auteur (s)                                               |
-| -------------------- | ------------------------------------------------------- |
-| Manuels/diapositives de l’atelier | Andrew Connell (MVP Microsoft, Voitanos) @andrewconnell |
-| Commanditaire/support    | Jeremy Thake (Microsoft) @jthake                        |
+|        Rôles         |                                       Auteur (s)                                       |
+| -------------------- | ------------------------------------------------------------------------------------- |
+| Manuels/diapositives de l’atelier | Andrew Connell (MVP Microsoft, Voitanos) [@andrewconnell](//github.com/andrewconnell) |
+| Commanditaire/support    | Jeremy Thake (Microsoft) [@jthake](//github.com/jthake)                               |
 
 ## <a name="version-history"></a>Historique des versions
 
-| Version | Date           | Comments             |
-| ------- | -------------- | -------------------- |
-| 1.1     | 9 avril 2019 | Ajout d’un lien de captures numériques |
-| 1.0     | 14 mars 2019 | Nouveau module envoyé |
+| Version |      Date      |                     Comments                     |
+| ------- | -------------- | ------------------------------------------------ |
+| 1.3     | 18 juin 2019  | Fichier Lisez-moi mis à jour pour l’enregistrement de captures numériques |
+| 1.2     | 30 mai 2019   | Actualisation du contenu Fy2019Q4                         |
+| 1.1     | 9 avril 2019  | Ajout d’un lien de captures numériques                            |
+| 1.0     | 14 mars 2019 | Nouveau module envoyé                             |
 
 ## <a name="disclaimer"></a>Clause d’exclusion de responsabilité
 

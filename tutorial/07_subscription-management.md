@@ -1,50 +1,17 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-Les abonnements pour les notifications expirent et doivent être renouvelés régulièrement.
+Les abonnements pour les notifications expirent et doivent être renouvelés régulièrement. Les étapes suivantes montrent comment renouveler les notifications.
 
-Ouvrez **NotificationsController.cs** et remplacez la `Get()` méthode par le code suivant:
+Les **contrôleurs ouverts > fichier NotificationsController.cs**
+
+Ajoutez les deux déclarations de membre suivantes à `NotificationsController` la classe:
 
 ```csharp
 private static Dictionary<string, Subscription> Subscriptions = new Dictionary<string, Subscription>();
 private static Timer subscriptionTimer = null;
-
-[HttpGet]
-public ActionResult<string> Get()
-{
-  var graphServiceClient = GetGraphClient();
-
-  var sub = new Microsoft.Graph.Subscription();
-  sub.ChangeType = "updated";
-  sub.NotificationUrl = config.Ngrok + "/api/notifications";
-  sub.Resource = "/users";
-  sub.ExpirationDateTime = DateTime.UtcNow.AddMinutes(5);
-  sub.ClientState = "SecretClientState";
-
-  var newSubscription = graphServiceClient
-    .Subscriptions
-    .Request()
-    .AddAsync(sub).Result;
-
-  Subscriptions[newSubscription.Id] = newSubscription;
-
-  if(subscriptionTimer == null)
-  {
-      subscriptionTimer = new Timer(CheckSubscriptions, null, 5000, 15000);
-  }
-
-  return $"Subscribed. Id: {newSubscription.Id}, Expiration: {newSubscription.ExpirationDateTime}";
-}
 ```
 
-Ajoutez l’instruction using suivante en haut du fichier.
-
-```csharp
-using System.Threading;
-```
-
-Ce code ci-dessus ajoute un minuteur d’arrière-plan qui se déclenche toutes les 15 secondes et vérifie si les abonnements ont expiré.
-
-Ajoutez les nouvelles méthodes suivantes:
+Ajoutez les nouvelles méthodes suivantes. Ces éléments implémenteront un minuteur d’arrière-plan qui s’exécutera toutes les 15 secondes pour vérifier si les abonnements ont expiré. Si c’est le cas, ils seront renouvelés.
 
 ```csharp
 private void CheckSubscriptions(Object stateInfo)
@@ -81,11 +48,53 @@ private void RenewSubscription(Subscription subscription)
 }
 ```
 
-La `CheckSubscriptions` méthode est appelée toutes les 15 secondes par le minuteur. Pour l’utilisation de production, cette valeur doit être définie sur une valeur plus raisonnable afin de réduire le nombre d’appels inutiles à Graph. La `RenewSubscription` méthode renouvelle un abonnement et n’est appelée que si un abonnement arrivera à expiration dans les deux minutes à venir.
+La `CheckSubscriptions` méthode est appelée toutes les 15 secondes par le minuteur. Pour l’utilisation de la production, cette valeur doit être définie sur une valeur plus raisonnable afin de réduire le nombre d’appels inutiles à Microsoft Graph.
 
-Sélectionnez **débogage > démarrer** le débogage pour exécuter l’application. Accédez à l’URL `*http://localhost:5000/api/notifications` suivante pour enregistrer un nouvel abonnement.
+La `RenewSubscription` méthode renouvelle un abonnement et n’est appelée que si un abonnement arrivera à expiration dans les deux minutes à venir.
 
-Vous verrez la sortie suivante dans la `DEBUG OUTPUT` fenêtre de Visual Studio code environ toutes les 15 secondes.  Il s’agit du minuteur vérifiant l’expiration de l’abonnement.
+Recherchez la méthode `Get()` et remplacez-la par le code suivant:
+
+```csharp
+[HttpGet]
+public ActionResult<string> Get()
+{
+    var graphServiceClient = GetGraphClient();
+
+    var sub = new Microsoft.Graph.Subscription();
+    sub.ChangeType = "updated";
+    sub.NotificationUrl = config.Ngrok + "/api/notifications";
+    sub.Resource = "/users";
+    sub.ExpirationDateTime = DateTime.UtcNow.AddMinutes(5);
+    sub.ClientState = "SecretClientState";
+
+    var newSubscription = graphServiceClient
+      .Subscriptions
+      .Request()
+      .AddAsync(sub).Result;
+
+    Subscriptions[newSubscription.Id] = newSubscription;
+
+    if(subscriptionTimer == null)
+    {
+        subscriptionTimer = new Timer(CheckSubscriptions, null, 5000, 15000);
+    }
+
+    return $"Subscribed. Id: {newSubscription.Id}, Expiration: {newSubscription.ExpirationDateTime}";
+}
+```
+
+Ajoutez l’instruction suivante après les instructions `using` existantes en haut du fichier:
+
+```csharp
+using System.Threading;
+```
+
+### <a name="test-the-changes"></a>Testez les modifications:
+
+Dans Visual Studio code, sélectionnez **débogage > démarrer** le débogage pour exécuter l’application.
+Accédez à l’URL suivante: **http://localhost:5000/api/notifications**. Cette opération permet d’enregistrer un nouvel abonnement.
+
+Dans la fenêtre de la **console** de débogage de code Visual Studio, toutes les 15 secondes, Notez que le minuteur vérifiant que l’abonnement est expiré:
 
 ```shell
 Checking subscriptions 12:32:51.882

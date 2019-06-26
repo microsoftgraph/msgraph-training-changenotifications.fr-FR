@@ -7,10 +7,20 @@ Ce didacticiel vous apprend à créer une application .NET Core qui utilise l’
 
 ## <a name="prerequisites"></a>Conditions préalables
 
-Avant de commencer ce didacticiel, le kit de développement [logiciel (SDK) .net Core 2,2](https://dotnet.microsoft.com/download) et [Visual Studio code](https://code.visualstudio.com/) doivent être installés sur votre ordinateur de développement. Si vous ne les avez pas installés, reportez-vous aux liens précédents sur les options de téléchargement.
+Avant de commencer ce didacticiel, le kit de développement [logiciel (SDK) .net Core 2,2](https://dotnet.microsoft.com/download) et [Visual Studio code](https://code.visualstudio.com/) doivent être installés sur votre ordinateur de développement.
 
 > [!NOTE]
 > Ce didacticiel a été écrit avec .NET Core version 2,2. Les étapes de ce guide peuvent fonctionner avec d’autres versions, mais cela n’a pas été testé.
+
+## <a name="watch-the-tutorial"></a>Regarder le didacticiel
+
+Ce module a été enregistré et est disponible dans le canal YouTube de développement Office.
+
+<!-- markdownlint-disable MD033 MD034 -->
+<br/>
+
+> [!VIDEO https://www.youtube-nocookie.com/embed/fThiCZmIcMQ]
+<!-- markdownlint-enable MD033 MD034 -->
 
 ## <a name="feedback"></a>Commentaires
 

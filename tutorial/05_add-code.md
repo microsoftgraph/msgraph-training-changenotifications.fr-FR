@@ -10,7 +10,9 @@ Ouvrez le fichier **Startup.cs** et commentez la ligne suivante pour désactiver
 
 L’application utilise plusieurs nouvelles classes de modèles pour (de) la sérialisation de messages vers ou à partir de Microsoft Graph.
 
-Cliquez avec le bouton droit dans l’arborescence de fichiers du projet et sélectionnez **nouveau dossier**. Nommez **** -le cliquez avec le bouton droit sur le dossier **Models** et ajoutez trois nouveaux fichiers:
+Cliquez avec le bouton droit dans l’arborescence de fichiers du projet et sélectionnez **nouveau dossier**. Nommer les **modèles**
+
+Cliquez avec le bouton **** droit sur le dossier Models et ajoutez trois nouveaux fichiers:
 
 - **Notification.cs**
 - **ResourceData.cs**
@@ -103,7 +105,7 @@ namespace msgraphapp
 }
 ```
 
-Ouvrez le fichier **Startup.cs** et remplacez le contenu par ce qui suit.
+Ouvrez le fichier **Startup.cs** . Recherchez la méthode `ConfigureServices()` de méthode & remplacez-la par le code suivant:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -136,9 +138,9 @@ Ouvrez le fichier **appSettings. JSON** et remplacez le contenu ci-dessous.
 
 Remplacez les variables suivantes par les valeurs que vous avez copiées précédemment:
 
-    - `<NGROK URL>`doit être défini sur l’URL HTTPS ngrok que vous avez copiée précédemment.
-    - `<TENANT ID>`doit être votre ID de client Office 365, par exemple. **contoso.onmicrosoft.com**.
-    - `<APP ID>``<APP SECRET>` il doit s’agir de l’ID et de la clé secrète que vous avez copiés précédemment lors de la création de l’enregistrement de l’application.
+- `<NGROK URL>`doit être défini sur l’URL HTTPS ngrok que vous avez copiée précédemment.
+- `<TENANT ID>`doit être votre ID de client Office 365, par exemple: **contoso.onmicrosoft.com**.
+- `<APP ID>``<APP SECRET>` il doit s’agir de l’ID et de la clé secrète que vous avez copiés précédemment lors de la création de l’enregistrement de l’application.
 
 ### <a name="add-notification-controller"></a>Ajouter un contrôleur de notification
 
@@ -146,7 +148,7 @@ L’application requiert un nouveau contrôleur pour traiter l’abonnement et l
 
 Cliquez avec le bouton `Controllers` droit sur le dossier, sélectionnez **nouveau fichier**, puis nommez le contrôleur **NotificationsController.cs**.
 
-Remplacez le contenu de **NotificationController.cs** par ce qui suit:
+Remplacez le contenu de **NotificationController.cs** par le code suivant:
 
 ```csharp
 using System;
@@ -244,23 +246,19 @@ namespace msgraphapp.Controllers
 
     private async Task<string> GetAccessToken()
     {
-        ClientCredential clientCredentials = new ClientCredential(secret: config.AppSecret);
+      IConfidentialClientApplication app = ConfidentialClientApplicationBuilder.Create(config.AppId)
+        .WithClientSecret(config.AppSecret)
+        .WithAuthority($"https://login.microsoftonline.com/{config.TenantId}")
+        .WithRedirectUri("https://daemon")
+        .Build();
 
-        var app = new ConfidentialClientApplication(
-            clientId: config.AppId,
-            authority: $"https://login.microsoftonline.com/{config.TenantId}",
-            redirectUri: "https://daemon",
-            clientCredential: clientCredentials,
-            userTokenCache: null,
-            appTokenCache: new TokenCache()
-        );
+      string[] scopes = new string[] { "https://graph.microsoft.com/.default" };
 
-        string[] scopes = new string[] { "https://graph.microsoft.com/.default" };
+      var result = await app.AcquireTokenForClient(scopes).ExecuteAsync();
 
-        var result = await app.AcquireTokenForClientAsync(scopes);
-
-        return result.AccessToken;
+      return result.AccessToken;
     }
+
   }
 }
 ```
